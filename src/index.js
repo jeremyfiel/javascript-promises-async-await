@@ -1,11 +1,11 @@
-const movies = require("./movies.json");
-const { fetchWithTimeout } = require("./services");
+import movies from ("./data/movies.json");
+import { fetchWithTimeout } from ("./services");
 
 export function fetchMovies() {
-  const resolveFunction = () => movies;
+  function resolveFunction() { return movies};
 
   return fetchWithTimeout(1000).then(resolveFunction);
 }
 
 const moviePromise = fetchMovies();
-moviePromise.then((results) => console.log(results));
+moviePromise.then((results) => { console.log(results)});
