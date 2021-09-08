@@ -11,7 +11,7 @@ describe('Module 8', () => {
     if (checkFileExists('index')) {
       let file = fs.readFileSync(
         path.join(process.cwd(), 'src/index.js'),
-        'utf8',
+        'utf8'
       );
       const res = acorn.parse(file, { sourceType: 'module' });
       const parent = {};
@@ -62,7 +62,7 @@ describe('Module 8', () => {
 
       expect(_.get(catchReturnNode, 'argument.name', '')).to.equal(
         'error',
-        'You should return `error` in the catch block.',
+        'You should return `error` in the catch block.'
       );
     }
   });
@@ -71,7 +71,7 @@ describe('Module 8', () => {
     if (checkFileExists('index')) {
       let file = fs.readFileSync(
         path.join(process.cwd(), 'src/index.js'),
-        'utf8',
+        'utf8'
       );
       const res = acorn.parse(file, { sourceType: 'module' });
       const parent = {};
@@ -97,42 +97,42 @@ describe('Module 8', () => {
         _.get(
           func.raceCatchNode,
           'body.body[0].expression.callee.object.name',
-          '',
-        ),
+          ''
+        )
       ).to.equal(
         'console',
-        'You should be logging the results via the `console` object.',
+        'You should be logging the results via the `console` object.'
       );
       expect(
         _.get(
           func.raceCatchNode,
           'body.body[0].expression.callee.property.name',
-          '',
-        ),
+          ''
+        )
       ).to.equal(
         'error',
-        'You should be logging the results with the `error` method on the `console` object.',
+        'You should be logging the results with the `error` method on the `console` object.'
       );
 
       expect(
         _.get(
           func.raceCatchNode,
           'body.body[0].expression.arguments[0].value',
-          '',
-        ),
+          ''
+        )
       ).to.equal(
         'Error in getBooksAndMoviesAsync execution',
-        'You should be logging the message `Error in getBooksAndMoviesAsync execution`.',
+        'You should be logging the message `Error in getBooksAndMoviesAsync execution`.'
       );
       expect(
         _.get(
           func.raceCatchNode,
           'body.body[0].expression.arguments[1].name',
-          '',
-        ),
+          ''
+        )
       ).to.equal(
         'error',
-        'You should be logging the `error` object after the message.',
+        'You should be logging the `error` object after the message.'
       );
     }
   });
@@ -141,7 +141,7 @@ describe('Module 8', () => {
     if (checkFileExists('index')) {
       let file = fs.readFileSync(
         path.join(process.cwd(), 'src/index.js'),
-        'utf8',
+        'utf8'
       );
       const res = acorn.parse(file, { sourceType: 'module' });
       const parent = {};
@@ -157,7 +157,7 @@ describe('Module 8', () => {
             _.get(node, 'declarations[0].id.name', '') ===
             'getBooksOrMoviesAsync'
           ) {
-            console.dir(node, dirOpts);
+            //            console.dir(node, dirOpts);
             func.node = node;
           }
         },
@@ -172,7 +172,7 @@ describe('Module 8', () => {
           if (
             _.get(node, 'elements[0].callee.name', '') === 'asyncFetchBookss'
           ) {
-            console.dir(node, dirOpts);
+            //            console.dir(node, dirOpts);
             func.misspelledFunction = node;
           }
         },
@@ -180,7 +180,7 @@ describe('Module 8', () => {
 
       expect(tryBlocks.length).to.equal(
         0,
-        'You must remove the `try/catch` block from `getBooksOrMoviesAsync()`.',
+        'You must remove the `try/catch` block from `getBooksOrMoviesAsync()`.'
       );
 
       expect(func.misspelledFunction).to.not.be.undefined;
